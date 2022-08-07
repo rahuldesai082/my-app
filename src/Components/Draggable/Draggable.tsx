@@ -28,9 +28,10 @@ class Draggable extends React.Component<DraggableProps, DraggableState> {
     }
 
     _dragStart = (e:any) => {
+        console.log(e)
         this.setState({
-            diffX: e.screenY - e.currentTarget.getBoundingClientReact().top,
-            diffY: e.screenX - e.currentTarget.getBoundingClientReact().left,
+            diffX: e.screenY - e.currentTarget?.getBoundingClientReact().top,
+            diffY: e.screenX - e.currentTarget?.getBoundingClientReact().left,
             dragging: true
         });
     }
