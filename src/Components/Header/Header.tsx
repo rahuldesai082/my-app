@@ -15,7 +15,11 @@ const Header: React.FunctionComponent<HeaderProps> = ({showDraggableBox}) => {
     });
     return <div className='header'>
         <div className='position'>
-            Position
+            <div>Position</div>
+            <div className='position-x'>
+                <input type ="radio" name="position" value="center"/> center
+                <input type ="radio" name="position" value="lower-right" /> Lower right
+            </div>
         </div>
         <div className='instruction'>
             Press {showDraggableBox ?'Esc':'Enter'} to {showDraggableBox ?'hide':'show'} the box

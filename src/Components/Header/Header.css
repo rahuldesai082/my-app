@@ -7,11 +7,13 @@
     justify-content: space-between;
     padding: 0 24px;
 }
-
+.position,.instruction {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
 .instruction {
     color: yellow;
-    display: flex;
-    gap: 12px;
 }
 .instruction .time {
     color: white;
