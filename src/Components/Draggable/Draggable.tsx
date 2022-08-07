@@ -36,8 +36,8 @@ class Draggable extends React.Component<DraggableProps, DraggableState> {
     }
     _dragging = (e:any) => {
         if(this.state.dragging) {
-            const left = e.screenX - e.currentTarget.getBoundingClientRect().left;
-            const top = e.screenY - e.currentTarget.getBoundingClientRect().top;
+            const left = e.screenX - this.state.diffX;
+            const top = e.screenY - this.state.diffY;
             this.setState({
                 style:{
                     left: left,
