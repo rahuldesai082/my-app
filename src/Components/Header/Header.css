@@ -1,0 +1,19 @@
+.header {
+    background-color: black;
+    color: white;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+}
+
+.instruction {
+    color: yellow;
+    display: flex;
+    gap: 12px;
+}
+.instruction .time {
+    color: white;
+    font-weight: 800;
+}
