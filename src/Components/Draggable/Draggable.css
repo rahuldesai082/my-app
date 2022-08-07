@@ -6,13 +6,12 @@
     position: relative;
 }
 .draggable-box {
-    height: 100px;
-    width: 200px;
+    height: 200px;
+    width: 250px;
     border: 1px solid;
     background-color: gray;
     position: absolute;
-    top: calc(50% - 50px);
-    left: calc(50% - 100px);
+    cursor: move;
 }
 .draggable-box .position {
     position: absolute;

@@ -20,7 +20,10 @@ class Draggable extends React.Component<DraggableProps, DraggableState> {
             diffX:0,
             diffY:0,
             dragging:false,
-            style: {}
+            style: {
+                top: 'calc(50% - 100px)',
+                left: 'calc(50% - 125px)'
+            }
         };
         this._dragStart = this._dragStart.bind(this);
         this._dragging = this._dragging.bind(this);
