@@ -21,7 +21,7 @@ const Home: FunctionComponent<HomeProps> = () => {
             }
         });
     }, [showDraggableBox]);
-    console.log({showDraggableBox});
+    
     return <>
         <Header showDraggableBox={showDraggableBox}/>
         <Draggable showDraggableBox={showDraggableBox}/>
