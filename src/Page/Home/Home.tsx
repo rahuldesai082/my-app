@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import Draggable from '../../Components/Draggable/Draggable';
+import OuterBox from '../../Components/OuterBox/OuterBox';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import './Home.css'
@@ -24,7 +24,7 @@ const Home: FunctionComponent<HomeProps> = () => {
     
     return <>
         <Header showDraggableBox={showDraggableBox}/>
-        <Draggable showDraggableBox={showDraggableBox}/>
+        <OuterBox showDraggableBox={showDraggableBox}/>
         <Footer/>
     </>;
 }
