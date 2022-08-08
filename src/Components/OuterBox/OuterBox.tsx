@@ -12,35 +12,49 @@ interface OuterBoxProps {
  
 const OuterBox: React.FunctionComponent<OuterBoxProps> = ({showDraggableBox, defaultBoxPosition, handlePositionChange}) => {
     const [isDragging, setIsDragging] = useState(false);
-    const [position, setPosition] = useState<{ x: number, y: number } | undefined>({x: (window.innerWidth/2-150), y: (window.innerHeight/2-200)});
+    const [position, setPosition] = useState<{ x: number, y: number } | undefined>(undefined);
     const containerRef = useRef<HTMLDivElement>(null);
-    const draggableBoxRef = useRef<Draggable>(null);
+    const draggableBoxRef = useRef<HTMLDivElement>(null);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const handleCardPosition = (position:string) => {
+        const boxHeight = draggableBoxRef.current?.offsetHeight;
+        const boxWidth = draggableBoxRef.current?.offsetWidth;
+
+        if (position === CENTER) {
+            setPosition({x: ((window.innerWidth/2) - (boxWidth ? boxWidth/2 : 0)), y: ((window.innerHeight/2) - (boxHeight ? boxHeight/1.25 : 0))});
+        }
+        if (position === LOWER_RIGHT) {
+            setPosition({x: (window.innerWidth-300), y: (window.innerHeight-(boxHeight?boxHeight * 1.5 : 0))});
+        }
+    }
 
     useEffect(() => {
-        if (defaultBoxPosition === CENTER) {
-            setPosition({x: ((window.innerWidth/2) - 150), y: ((window.innerHeight/2) - 200)});
+        defaultBoxPosition && handleCardPosition(defaultBoxPosition);
+    },[defaultBoxPosition])
+
+    useEffect(() => {
+        window.addEventListener('resize', ()=>handleCardPosition(defaultBoxPosition));
+        return () => {
+            window.removeEventListener('resize', ()=>handleCardPosition(defaultBoxPosition));
         }
-        if (defaultBoxPosition === LOWER_RIGHT) {
-            setPosition({x: (window.innerWidth-300), y: (window.innerHeight-420)});
-        }
-    }, [defaultBoxPosition])
+    },[defaultBoxPosition]);
     
     return (<div className='wrapper' ref={containerRef}>
         <div className='draggable-container'>
         {   
             showDraggableBox && <Draggable
-            ref={draggableBoxRef}
             onStart={() => {
                 setIsDragging(true);
                 setPosition(undefined);
-                handlePositionChange('')
+                handlePositionChange('');
             }}
             onStop={() => setIsDragging(false)}
             position={position}
             handle={'.draggable-box'}
             defaultPosition={position}
             bounds='parent'>
-                <div className={`draggable-box`}>
+                <div className={`draggable-box`} ref={draggableBoxRef}>
                     <div className='event-state'>{isDragging?'Dragging...':''}</div>
                     <div className='label'>Drag me around</div>
                 </div>
