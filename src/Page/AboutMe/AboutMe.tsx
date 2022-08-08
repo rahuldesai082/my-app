@@ -14,13 +14,16 @@ const AboutMe: FunctionComponent<AboutMeProps> = () => {
             <div className='divider'></div>
             <div className='title'>About me</div>
         </div>
-        <div className='aboutMe-body'></div>
+        <div className='aboutMe-body'>
+            <div>Rahul Desai</div>
+            <div>Front-end Developer</div>
+        </div>
         <div className='aboutMe-footer'>
             <div>
-                +91-7259998980
+                <a href="tel:+917259998980">+91-7259998980</a>
             </div>
             <div className='divider'></div>
-            <div>rahuldesai082@gmail.com</div>
+            <div><a href="mailto:rahuldesai082@gmail.com">rahuldesai082@gmail.com</a></div>
         </div>
     </div>;
 }

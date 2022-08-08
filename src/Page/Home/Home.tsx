@@ -3,12 +3,14 @@ import OuterBox from '../../Components/OuterBox/OuterBox';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import './Home.css'
+import { CENTER } from '../../utils/Constants';
 interface HomeProps {
     
 }
  
 const Home: FunctionComponent<HomeProps> = () => {
     const [showDraggableBox, setShowDraggableBox] = useState(true);
+    const [boxPosition, setBoxPosition] = useState<string>(CENTER);
     // Add event listener to hide the button when the user presses the Esc key
     useEffect(() => {
         document.addEventListener('keydown', (e) => {
@@ -21,10 +23,12 @@ const Home: FunctionComponent<HomeProps> = () => {
             }
         });
     }, [showDraggableBox]);
-    
+    const positionChangeHandler= (position:string) => {
+        setBoxPosition(position)
+    };
     return <>
-        <Header showDraggableBox={showDraggableBox}/>
-        <OuterBox showDraggableBox={showDraggableBox}/>
+        <Header handlePositionChange={positionChangeHandler} showDraggableBox={showDraggableBox} position={boxPosition}/>
+        <OuterBox handlePositionChange={positionChangeHandler} defaultBoxPosition = {boxPosition} showDraggableBox={showDraggableBox}/>
         <Footer/>
     </>;
 }

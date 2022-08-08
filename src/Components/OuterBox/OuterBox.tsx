@@ -1,49 +1,53 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 import './OuterBox.css';
 
 interface OuterBoxProps {
     showDraggableBox : boolean
+    defaultBoxPosition: string
+    handlePositionChange: (state:string)=>void; 
 }
  
-const OuterBox: React.FunctionComponent<OuterBoxProps> = ({showDraggableBox}) => {
+const OuterBox: React.FunctionComponent<OuterBoxProps> = ({showDraggableBox, defaultBoxPosition, handlePositionChange}) => {
     const [isDragging, setIsDragging] = useState(false);
-    const [defaultPosition, setDefaultPosition] = useState<{x:number,y:number}|null>(null);
-    React.useEffect(() => {
-        const handleCardPosition = () => {
-            setDefaultPosition({x: (window.innerWidth/2-150), y: (window.innerHeight/2-200)});
-            console.log('add screen resize event listener',{x: (window.innerWidth/2-150), y: (window.innerHeight/2-200)});
+    const [position, setPosition] = useState<{ x: number, y: number } | undefined>({x: (window.innerWidth/2-150), y: (window.innerHeight/2-200)});
+    const [defaultPosition, setDefaultPosition] = useState<string>('');
+    const containerRef = useRef<HTMLDivElement>(null);
+    const draggableBoxRef = useRef<Draggable>(null);
+    
+    useEffect(() => {
+        setDefaultPosition(defaultBoxPosition)
+    }, [defaultBoxPosition])
+    
+    return (<div className='wrapper' ref={containerRef}>
+        <div className='draggable-container'>
+        {
+            
+            showDraggableBox && <Draggable
+            onMouseDown={()=>{
+                setDefaultPosition('');
+                setPosition(undefined);
+            }}
+            ref={draggableBoxRef}
+            onStart={() => {
+                setIsDragging(true);
+                setPosition(undefined);
+                handlePositionChange('')
+            }}
+            onStop={() => setIsDragging(false)}
+            position={position}
+            handle={'.draggable-box'}
+            defaultPosition={position}
+            bounds='parent'>
+                <div className={`draggable-box ${defaultPosition}`} style={{}}>
+                    <div className='event-state'>{isDragging?'Dragging...':''}</div>
+                    <div className='label'>Drag me around</div>
+                </div>
+            </Draggable>
         }
-        // add screen resize event listener
-        window.addEventListener('resize', handleCardPosition);
-        return () => {
-            // remove screen resize event listener
-            window.removeEventListener('resize', handleCardPosition);
-        }
-    },[]);
-    React.useLayoutEffect(() => {
-        if (!defaultPosition)
-            setDefaultPosition({x: (window.innerWidth/2-150), y: (window.innerHeight/2-200)});
-    } , [defaultPosition]);
-    return (<div className='draggable-container'>
-    {
-        showDraggableBox && <Draggable 
-        onStart={(e:any)=>{
-            setIsDragging(true)
-        }}
-        onStop={(e:any)=>{
-            setIsDragging(false);
-        }}
-        defaultPosition={defaultPosition||undefined}
-        bounds='parent'>
-            <div className='draggable-box'>
-                <div className='event-state'>{isDragging?'Dragging...':''}</div>
-                <div className='label'>Drag me around</div>
-            </div>
-        </Draggable>
-    }
-</div>);
+        </div>
+    </div>);
 }
  
 export default OuterBox;

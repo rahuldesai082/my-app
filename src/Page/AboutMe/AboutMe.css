@@ -5,9 +5,9 @@
     padding: 0 24px;
     align-items: center;
     outline: 1px solid;
-    background-color: cornflowerblue;
+    background-color: #64b4ed;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 20px;
 }
 .divider {
     width: 1px;
@@ -16,6 +16,7 @@
 }
 .aboutMe-header .link {
     cursor: pointer;
+    text-decoration: underline;
 }
 .aboutMe-header .title {
     color: #f5f5f5;
@@ -31,4 +32,7 @@
     width: 100%;
     bottom: 0;
     gap: 12px;
+}
+.aboutMe-footer a {
+    color: white;
 }
