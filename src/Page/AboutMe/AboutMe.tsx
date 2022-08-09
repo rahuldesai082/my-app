@@ -1,6 +1,7 @@
 import React, {FunctionComponent} from 'react';
 import { useNavigate } from "react-router";
 import { HOME } from '../../route';
+import { PROFILE_IMAGE } from '../../utils/Constants';
 import './AboutMe.css';
 interface AboutMeProps {
     
@@ -12,11 +13,12 @@ const AboutMe: FunctionComponent<AboutMeProps> = () => {
         <div className='aboutMe-header'>
             <div className='link' onClick={() => navigate(HOME)}>Back</div>
             <div className='divider'></div>
-            <div className='title'>About me</div>
+            <div className='title'>My profile</div>
         </div>
         <div className='aboutMe-body'>
-            <div>Rahul Desai</div>
-            <div>Front-end Developer</div>
+            <div className='profile-image'><img src={PROFILE_IMAGE} alt='Rahul Desai'/></div>
+            <div className='name'>Rahul Desai</div>
+            <div className='role'>Front-end Developer</div>
         </div>
         <div className='aboutMe-footer'>
             <div>

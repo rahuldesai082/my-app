@@ -1,2 +1,2 @@
 export const HOME ='/';
-export const ABOUT_ME ='/about-me';
+export const MY_PROFILE ='/my-profile';

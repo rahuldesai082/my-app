@@ -6,7 +6,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { ABOUT_ME, HOME } from './route';
+import { MY_PROFILE, HOME } from './route';
 import AboutMe from './Page/AboutMe/AboutMe';
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path={HOME} element={<Home/>} />
-          <Route path={ABOUT_ME} element={<AboutMe/>} />
+          <Route path={MY_PROFILE} element={<AboutMe/>} />
         </Routes>
       </BrowserRouter>
     </div>
