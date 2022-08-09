@@ -17,8 +17,10 @@ const AboutMe: FunctionComponent<AboutMeProps> = () => {
         </div>
         <div className='aboutMe-body'>
             <div className='profile-image'><img src={PROFILE_IMAGE} alt='Rahul Desai'/></div>
-            <div className='name'>Rahul Desai</div>
-            <div className='role'>Front-end Developer</div>
+            <div className='details'>
+                <div className='name'>Rahul Desai</div>
+                <div className='role'>Front-end Developer</div>
+            </div>
         </div>
         <div className='aboutMe-footer'>
             <div>

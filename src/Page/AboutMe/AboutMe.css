@@ -12,11 +12,14 @@
 }
 .aboutMe-body {
     display: flex;
-    gap: 8px;
+    gap: 12px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 24px;
+}
+.aboutMe-body .details{
+    text-align: center;
 }
 .aboutMe-body .profile-image{
     width: 150px;
